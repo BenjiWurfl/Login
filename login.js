@@ -14,9 +14,9 @@ createUserWithEmailAndPassword(auth, email, password)
   });
   */
 
-function redirect() {
-    window.location.href = "https://thinkwisenotes.webflow.io/app";
-}
+//function redirect() {
+//    window.location.href = "https://thinkwisenotes.webflow.io/app";
+//}
 
 function redirectSignUp() {
     window.location.href = "https://benjiwurfl.github.io/Sign-Up";
