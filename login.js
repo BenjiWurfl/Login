@@ -19,5 +19,5 @@ createUserWithEmailAndPassword(auth, email, password)
 //}
 
 function redirectSignUp() {
-    window.location.href = "https://benjiwurfl.github.io/Sign-Up";
+    window.location.href = "https://benjiwurfl.github.io/Sign-Up/";
 }
