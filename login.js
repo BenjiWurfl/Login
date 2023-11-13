@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+/*import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const auth = getAuth();
 createUserWithEmailAndPassword(auth, email, password)
@@ -12,6 +12,7 @@ createUserWithEmailAndPassword(auth, email, password)
     const errorMessage = error.message;
     // ..
   });
+  */
 
 function redirect() {
     window.location.href = "https://thinkwisenotes.webflow.io/app";
