@@ -38,7 +38,7 @@ let LoginUser = evt => {
 
         })
 
-        alert('User logged in')
+        window.location.href('https://thinkwisenotes.webflow.io/app');
     })
     .catch((error) =>{
         alert(error.message)
