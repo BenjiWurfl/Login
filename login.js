@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-import { getDatabase, get, ref, child } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+import { getDatabase, get, ref, child, update } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-analytics.js";
 
 const firebaseConfig = {
@@ -22,26 +22,23 @@ const dbref = ref(db);
 
 let EmailInput = document.getElementById('emailInput');
 let PasswordInput = document.getElementById('passwordInput');
-
 let LoginForm = document.getElementById('LoginForm');
 
 let LoginUser = evt => {
     evt.preventDefault();
 
     signInWithEmailAndPassword(auth, EmailInput.value, PasswordInput.value)
-    .then((credentials)=>{
-        get(child(dbref, 'UsersAuthList/' + credentials.user.uid))
-        .then((snapshot) => {
-          if(snapshot.exists){
-            sessionStorage.setItem("user-info", JSON.stringify({
-              firstname: snapshot.val().firstname,
-              lastname: snapshot.val().lastname
-            }))
-            sessionStorage.setItem('user-creds', JSOn.stringify(credentials.user));
-            window.location.href = 'http://thinkwisenotes.webflow.io/app'
-          }
+    .then((userCredential)=>{
+        const user = userCredential.user;
+        const dt = new Date();
+
+
+        update(ref(db, 'users/' + user.uid), {
+          last_login: dt,
+
         })
 
+        alert('User logged in')
     })
     .catch((error) =>{
         alert(error.message)
@@ -51,3 +48,24 @@ let LoginUser = evt => {
 }
 
 LoginForm.addEventListener('submit', LoginUser);
+
+const user = auth.currentUser;
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const uid = user.uid;
+    // ...
+  } else {  
+  }
+});
+
+Logout.addEventListener('submit', (e) =>{
+  const auth = getAuth();
+  signOut(auth).then(() => {
+    alert('User logged out');
+  }).catch((error) => {
+    alert(error.message)
+    console.log(error.code);
+    console.log(error.message);
+  });
+
+})
