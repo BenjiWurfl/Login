@@ -58,7 +58,7 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-Logout.addEventListener('submit', (e) =>{
+/*Logout.addEventListener('submit', (e) =>{
   const auth = getAuth();
   signOut(auth).then(() => {
     alert('User logged out');
@@ -68,4 +68,4 @@ Logout.addEventListener('submit', (e) =>{
     console.log(error.message);
   });
 
-})
+})*/
