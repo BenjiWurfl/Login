@@ -30,8 +30,6 @@ currentUrlInput.value = window.location.href;
 
 let LoginUser = evt => {
     evt.preventDefault();
-
-    // Hole die aktuelle URL aus dem versteckten Input-Feld
     const currentUrl = currentUrlInput.value;
 
     signInWithEmailAndPassword(auth, EmailInput.value, PasswordInput.value)
@@ -39,12 +37,15 @@ let LoginUser = evt => {
         const user = userCredential.user;
         const dt = new Date();
 
+
         update(ref(db, 'users/' + user.uid), {
           last_login: dt,
+
         })
 
-        // Leite den Benutzer zur gespeicherten URL weiter
+        console.log('Redirecting to:', currentUrl);
         window.location.href = currentUrl;
+        //window.location.href = "https://thinkwisenotes.webflow.io/app";
     })
     .catch((error) =>{
         alert(error.message)
@@ -63,3 +64,15 @@ onAuthStateChanged(auth, (user) => {
   } else {  
   }
 });
+
+/*Logout.addEventListener('submit', (e) =>{
+  const auth = getAuth();
+  signOut(auth).then(() => {
+    alert('User logged out');
+  }).catch((error) => {
+    alert(error.message)
+    console.log(error.code);
+    console.log(error.message);
+  });
+
+})*/
