@@ -24,21 +24,27 @@ let EmailInput = document.getElementById('emailInput');
 let PasswordInput = document.getElementById('passwordInput');
 let LoginForm = document.getElementById('LoginForm');
 
+// Füge ein verstecktes Input-Feld für die aktuelle URL hinzu
+let currentUrlInput = document.getElementById('currentUrl');
+currentUrlInput.value = window.location.href;
+
 let LoginUser = evt => {
     evt.preventDefault();
+
+    // Hole die aktuelle URL aus dem versteckten Input-Feld
+    const currentUrl = currentUrlInput.value;
 
     signInWithEmailAndPassword(auth, EmailInput.value, PasswordInput.value)
     .then((userCredential)=>{
         const user = userCredential.user;
         const dt = new Date();
 
-
         update(ref(db, 'users/' + user.uid), {
           last_login: dt,
-
         })
 
-        window.location.href = "https://thinkwisenotes.webflow.io/app";
+        // Leite den Benutzer zur gespeicherten URL weiter
+        window.location.href = currentUrl;
     })
     .catch((error) =>{
         alert(error.message)
@@ -57,15 +63,3 @@ onAuthStateChanged(auth, (user) => {
   } else {  
   }
 });
-
-/*Logout.addEventListener('submit', (e) =>{
-  const auth = getAuth();
-  signOut(auth).then(() => {
-    alert('User logged out');
-  }).catch((error) => {
-    alert(error.message)
-    console.log(error.code);
-    console.log(error.message);
-  });
-
-})*/

@@ -112,7 +112,7 @@ input {
 .sign-in-container {
 	left: 0;
 	width: 50%;
-	z-index: 2;
+	z-index: 1;
 }
 
 .container.right-panel-active .sign-in-container {
