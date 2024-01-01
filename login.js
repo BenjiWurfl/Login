@@ -43,9 +43,9 @@ let LoginUser = evt => {
 
         })
 
-        console.log('Redirecting to:', currentUrl);
-        window.location.href = currentUrl;
-        //window.location.href = "https://thinkwisenotes.webflow.io/app";
+        /*console.log('Redirecting to:', currentUrl);
+        window.location.href = currentUrl;*/
+        window.location.href = "https://thinkwisenotes.webflow.io/app";
     })
     .catch((error) =>{
         alert(error.message)
