@@ -24,29 +24,30 @@ let EmailInput = document.getElementById('emailInput');
 let PasswordInput = document.getElementById('passwordInput');
 let LoginForm = document.getElementById('LoginForm');
 
-// Füge ein verstecktes Input-Feld für die aktuelle URL hinzu
+/*// Füge ein verstecktes Input-Feld für die aktuelle URL hinzu
 let currentUrlInput = document.getElementById('currentUrl');
-currentUrlInput.value = window.location.href;
+currentUrlInput.value = window.location.href;*/
 
 let LoginUser = evt => {
     evt.preventDefault();
-    const currentUrl = currentUrlInput.value;
+    //const currentUrl = currentUrlInput.value;
 
     signInWithEmailAndPassword(auth, EmailInput.value, PasswordInput.value)
     .then((userCredential)=>{
         const user = userCredential.user;
         const dt = new Date();
 
-
         update(ref(db, 'users/' + user.uid), {
           last_login: dt,
-
         })
-
-        /*console.log('Redirecting to:', currentUrl);
-        window.location.href = currentUrl;*/
         window.location.href = "https://thinkwisenotes.webflow.io/app";
     })
+    .catch((error) =>{
+        alert(error.message)
+        console.log(error.code);
+        console.log(error.message);
+    })
+
     .catch((error) =>{
         alert(error.message)
         console.log(error.code);
