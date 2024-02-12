@@ -60,15 +60,3 @@ onAuthStateChanged(auth, (user) => {
   } else {  
   }
 });
-
-/*Logout.addEventListener('submit', (e) =>{
-  const auth = getAuth();
-  signOut(auth).then(() => {
-    alert('User logged out');
-  }).catch((error) => {
-    alert(error.message)
-    console.log(error.code);
-    console.log(error.message);
-  });
-
-})*/
