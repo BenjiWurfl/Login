@@ -20,9 +20,10 @@ const db = getDatabase();
 const auth = getAuth(app);
 const dbref = ref(db);
 
-let EmailInput = document.getElementById('emailInput');
-let PasswordInput = document.getElementById('passwordInput');
-let LoginForm = document.getElementById('LoginForm');
+let LoginForm = document.getElementsByClassName('LoginForm')[0];
+
+let EmailInput = LoginForm.querySelector('#emailInput');
+let PasswordInput = LoginForm.querySelector('#passwordInput');
 
 let LoginUser = evt => {
     evt.preventDefault();
