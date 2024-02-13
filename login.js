@@ -26,14 +26,14 @@ let EmailInput = LoginForm.querySelector('#emailInput');
 let PasswordInput = LoginForm.querySelector('#passwordInput');
 
 let LoginUser = evt => {
-    evt.preventDefault();
+    evt.preventDefault();         // Verhindern des Standardverhaltens des Formulars
 
-    signInWithEmailAndPassword(auth, EmailInput.value, PasswordInput.value)
+    signInWithEmailAndPassword(auth, EmailInput.value, PasswordInput.value)     // Anmelden des Benutzers mit E-Mail und Passwort über das Firebase-Authentifizierungsmodul
     .then((userCredential)=>{
         const user = userCredential.user;
         const dt = new Date();
 
-        update(ref(db, 'users/' + user.uid), {
+        update(ref(db, 'users/' + user.uid), {          // Aktualisieren des letzten Anmeldedatums in der Firebase-Datenbank für den angemeldeten Benutzer
           last_login: dt,
         })
         window.location.href = "https://thinkwisenotes.webflow.io/app";
