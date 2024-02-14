@@ -36,7 +36,7 @@ let LoginUser = evt => {
         update(ref(db, 'users/' + user.uid), {          // Aktualisieren des letzten Anmeldedatums in der Firebase-Datenbank für den angemeldeten Benutzer
           last_login: dt,
         })
-        window.location.href = "https://thinkwisenotes.webflow.io/app";
+        window.location.href = "https://benjiwurfl.github.io/Home/";
     })
     .catch((error) =>{
         alert(error.message)
