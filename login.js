@@ -20,9 +20,9 @@ const db = getDatabase();
 const auth = getAuth(app);
 const dbref = ref(db);
 
-let LoginForm = document.getElementsByClassName('LoginForm')[0];
+let LoginForm = document.getElementsByClassName('LoginForm')[0];            // Selektion des HTML-Elements mit der Klasse 'LoginForm'
 
-let EmailInput = LoginForm.querySelector('#emailInput');
+let EmailInput = LoginForm.querySelector('#emailInput');                    // Selektion der Eingabefelder innerhalb des Formulars
 let PasswordInput = LoginForm.querySelector('#passwordInput');
 
 let LoginUser = evt => {
