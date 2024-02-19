@@ -40,7 +40,7 @@ let LoginUser = evt => {
         window.location.href = "https://benjiwurfl.github.io/Home/";
     })
     .catch((error) => {
-        if (error.code === "auth/wrong-password") {     // Wenn ein falsches Passwort eingegeben wurde, dann kommt eine Alert
+        if (error.code === "auth/invalid-credential") {     // Wenn ein falsches Passwort eingegeben wurde, dann kommt eine Alert
             alert("Wrong password. Please try again.");
         } else {
             alert(error.message);
