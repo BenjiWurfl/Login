@@ -35,29 +35,20 @@ let LoginUser = evt => {
 
         update(ref(db, 'users/' + user.uid), {          // Aktualisieren des letzten Anmeldedatums in der Firebase-Datenbank für den angemeldeten Benutzer
           last_login: dt,
-        })
+        });
+
         window.location.href = "https://benjiwurfl.github.io/Home/";
     })
-    .catch((error) =>{
-        alert(error.message)
-        console.log(error.code);
-        console.log(error.message);
-    })
+    .catch((error) => {
+        if (error.code === "auth/wrong-password") {     // Wenn ein falsches Passwort eingegeben wurde, dann kommt eine Alert
+            alert("Wrong password. Please try again.");
+        } else {
+            alert(error.message);
+        }
 
-    .catch((error) =>{
-        alert(error.message)
         console.log(error.code);
         console.log(error.message);
-    })
-}
+    });
+};
 
 LoginForm.addEventListener('submit', LoginUser);
-
-const user = auth.currentUser;
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    const uid = user.uid;
-    // ...
-  } else {  
-  }
-});
