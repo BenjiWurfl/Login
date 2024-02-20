@@ -20,8 +20,9 @@ const db = getDatabase();
 const auth = getAuth(app);
 const dbref = ref(db);
 
-let LoginForm = document.getElementsByClassName('LoginForm')[0];            // Selektion des HTML-Elements mit der Klasse 'LoginForm'
+const logoutLink = document.querySelector('.nav-link.logout');              // Selektion des Logout-Link in der Sidebar
 
+let LoginForm = document.getElementsByClassName('LoginForm')[0];            // Selektion des HTML-Elements mit der Klasse 'LoginForm'
 let EmailInput = LoginForm.querySelector('#emailInput');                    // Selektion der Eingabefelder innerhalb des Formulars
 let PasswordInput = LoginForm.querySelector('#passwordInput');
 
@@ -52,3 +53,14 @@ let LoginUser = evt => {
 };
 
 LoginForm.addEventListener('submit', LoginUser);
+
+// Logout EventListener
+logoutLink.addEventListener('click', () => {
+    signOut(auth)
+        .then(() => {
+            window.location.href = "https://benjiwurfl.github.io/Login/";
+        })
+        .catch((error) => {
+            console.error("Logout Error: ", error);
+        });
+});
